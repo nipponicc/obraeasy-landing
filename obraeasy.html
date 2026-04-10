@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObraEasy | O Futuro da Precificação Imobiliária</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #050508; 
+            color: #fff; 
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: rgba(5,5,8,0.9); 
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000;
+        }
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; 
+            font-size: 1.5rem; 
+            color: #fff;
+            text-decoration: none;
+        }
+        .logo-icon { 
+            width: 40px; 
+            height: 40px; 
+            background: linear-gradient(135deg, #00f0ff, #b829dd); 
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-weight: 800;
+            box-shadow: 0 0 20px rgba(0,240,255,0.5);
+        }
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            padding: 12px 28px; 
+            font-weight: 600; 
+            border-radius: 4px; 
+            text-decoration: none; 
+            transition: all 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, #00f0ff, #0080ff); 
+            color: #050508;
+            box-shadow: 0 0 20px rgba(0,240,255,0.4);
+        }
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 0 30px rgba(0,240,255,0.6);
+        }
+        .btn-outline { 
+            color: #00f0ff; 
+            border: 1px solid #00f0ff;
+            background: transparent;
+        }
+        
+        /* Hero */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            padding: 140px 0 80px;
+            background: 
+                linear-gradient(135deg, rgba(5,5,8,0.95) 0%, rgba(5,5,8,0.8) 100%),
+                url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920') center/cover;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0,240,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(184,41,221,0.1) 0%, transparent 50%);
+        }
+        .hero-content { 
+            max-width: 700px; 
+            position: relative;
+            z-index: 1;
+        }
+        .badge { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            background: rgba(0,240,255,0.1); 
+            border: 1px solid #00f0ff;
+            color: #00f0ff; 
+            padding: 8px 16px; 
+            border-radius: 4px; 
+            font-size: 0.75rem; 
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+        }
+        .badge-dot { 
+            width: 6px; 
+            height: 6px; 
+            background: #00ff88; 
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        
+        h1 { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 4rem; 
+            font-weight: 700; 
+            line-height: 1.1; 
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00f0ff, #b829dd, #ff2d95);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle { 
+            font-size: 1.2rem; 
+            color: rgba(255,255,255,0.7); 
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .hero-cta { display: flex; gap: 16px; margin-bottom: 48px; }
+        .hero-stats { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 32px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .hero-stat-value { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 2.5rem; 
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f0ff, #00fff9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-stat-label { 
+            font-size: 0.75rem; 
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+        /* Dual Concept */
+        .dual-concept { padding: 120px 0; background: #050508; }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+        .section-label { 
+            font-family: 'Space Grotesk', sans-serif;
+            color: #00f0ff; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+        h2 { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 3rem; 
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .concept-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 32px; 
+        }
+        .concept-card { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; 
+            padding: 48px;
+            backdrop-filter: blur(20px);
+        }
+        .concept-card:hover { 
+            transform: translateY(-10px); 
+            border-color: #00f0ff;
+            box-shadow: 0 20px 60px rgba(0,240,255,0.2);
+        }
+        .concept-card.reforma:hover { border-color: #b829dd; }
+        .concept-icon { 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 16px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 2.5rem; 
+            margin-bottom: 24px;
+        }
+        .mercado .concept-icon { 
+            background: rgba(0,240,255,0.1); 
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 30px rgba(0,240,255,0.3);
+        }
+        .reforma .concept-icon { 
+            background: rgba(184,41,221,0.1); 
+            border: 1px solid #b829dd;
+            box-shadow: 0 0 30px rgba(184,41,221,0.3);
+        }
+        .concept-card h3 { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 1.75rem; 
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .mercado h3 { color: #00f0ff; }
+        .reforma h3 { color: #b829dd; }
+        .concept-card p { color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+        .concept-features { list-style: none; }
+        .concept-features li { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.7);
+        }
+        .mercado .concept-features li::before { content: '▸'; color: #00f0ff; }
+        .reforma .concept-features li::before { content: '▸'; color: #b829dd; }
+        
+        /* Pricing */
+        .pricing { padding: 120px 0; text-align: center; }
+        .pricing-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 24px; 
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .pricing-card { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; 
+            padding: 40px 32px;
+            position: relative;
+        }
+        .pricing-card.featured { 
+            border-color: #00f0ff; 
+            box-shadow: 0 0 60px rgba(0,240,255,0.3);
+            transform: scale(1.05);
+        }
+        .pricing-badge { 
+            position: absolute; 
+            top: 0; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #00f0ff, #b829dd);
+            color: #050508;
+            padding: 8px 24px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 0 0 8px 8px;
+        }
+        .pricing-name { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 1.5rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .price-amount { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 4rem; 
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f0ff, #00fff9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+        }
+        .pricing-features { list-style: none; margin: 32px 0; text-align: left; }
+        .pricing-features li { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            margin-bottom: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+        .pricing-features li::before { content: '✓'; color: #00f0ff; font-weight: 700; }
+        .btn-full { width: 100%; justify-content: center; }
+        
+        /* CTA */
+        .cta { padding: 120px 0; text-align: center; }
+        .cta h2 { margin-bottom: 24px; }
+        .cta > p { 
+            color: rgba(255,255,255,0.7); 
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+        .btn-glow { 
+            background: linear-gradient(135deg, #00f0ff, #b829dd);
+            color: #050508;
+            font-weight: 700;
+            box-shadow: 0 0 40px rgba(0,240,255,0.5);
+        }
+        
+        /* Footer */
+        footer { 
+            padding: 40px 0; 
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .concept-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .hero-cta { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">O</div>
+                ObraEasy
+            </a>
+            <a href="#precos" class="btn btn-primary">Acessar</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Dados em Tempo Real
+                </div>
+                <h1>O Futuro da <span class="gradient-text">Precificação</span></h1>
+                <p class="hero-subtitle">
+                    A única plataforma que une <strong>dados de mercado</strong> + 
+                    <strong>custos de reforma</strong> em tempo real.
+                </p>
+                <div class="hero-cta">
+                    <a href="#precos" class="btn btn-primary">Começar Agora →</a>
+                    <a href="#dual" class="btn btn-outline">Ver Demo</a>
+                </div>
+                <div class="hero-stats">
+                    <div>
+                        <div class="hero-stat-value">2.4M+</div>
+                        <div class="hero-stat-label">m² Analisados</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-value">847</div>
+                        <div class="hero-stat-label">Corretores Ativos</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-value">99.7%</div>
+                        <div class="hero-stat-label">Precisão</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dual-concept" id="dual">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Dupla Inteligência</div>
+                <h2>Mercado + Reforma = <span class="gradient-text">Precificação Perfeita</span></h2>
+            </div>
+            <div class="concept-grid">
+                <div class="concept-card mercado">
+                    <div class="concept-icon">📊</div>
+                    <h3>Dados de Mercado</h3>
+                    <p>Análise em tempo real de transações imobiliárias.</p>
+                    <ul class="concept-features">
+                        <li>Transações reais atualizadas</li>
+                        <li>Mapa de calor de preços</li>
+                        <li>Projeção com IA</li>
+                    </ul>
+                </div>
+                <div class="concept-card reforma">
+                    <div class="concept-icon">🔧</div>
+                    <h3>Custo de Reforma</h3>
+                    <p>Saiba quanto custa reformar antes de comprar.</p>
+                    <ul class="concept-features">
+                        <li>Orçamentos reais</li>
+                        <li>Calculadora de ROI</li>
+                        <li>Simulação pós-obra</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="precos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Planos</div>
+                <h2>Escolha seu <span class="gradient-text">Nível</span></h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Starter</div>
+                    <div class="price-amount">R$97</div>
+                    <ul class="pricing-features">
+                        <li>Dados de mercado básicos</li>
+                        <li>5 consultas reforma/mês</li>
+                        <li>1 cidade</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-full">Começar</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Mais Popular</div>
+                    <div class="pricing-name">Pro</div>
+                    <div class="price-amount">R$197</div>
+                    <ul class="pricing-features">
+                        <li>Dados completos</li>
+                        <li>Consultas ilimitadas</li>
+                        <li>Laudos EVF ilimitados</li>
+                        <li>Site profissional</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-full">Escolher Pro</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">Enterprise</div>
+                    <div class="price-amount">R$497</div>
+                    <ul class="pricing-features">
+                        <li>Tudo do Pro</li>
+                        <li>20 usuários</li>
+                        <li>API completa</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-full">Falar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Pronto para o Futuro?</h2>
+            <p>Junte-se a 847 profissionais que já precificam com precisão.</p>
+            <a href="#precos" class="btn btn-glow">Acessar Plataforma →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 ObraEasy. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
